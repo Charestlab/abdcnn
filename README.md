@@ -1,7 +1,9 @@
 # abdcnn
 repository for the ab dcnn project
 
-the code is programmed in Python 3.6. To install the packages required to run the code, run:
+the code is programmed in Python 3.6. for help on installing python 3.6 on your system, we refer to using conda (https://docs.conda.io/en/latest/).
+
+To install the packages required to run the code, run:
 
 pip install -r requirements.txt
 
