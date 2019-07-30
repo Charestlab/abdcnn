@@ -1,6 +1,7 @@
 # PERMUTATION TEST DISTRIBUTION
 import os
 import numpy as np
+import pandas as pd
 from sklearn import linear_model
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import cross_val_predict
@@ -39,6 +40,11 @@ DCNN_PATH = '../DCNN_features'
 DATA_PATH = '../data'
 # Sub x ABM per image
 AB = np.loadtxt(os.path.join(DATA_PATH, 'ABmag_allsubs.txt'))
+AB_df = pd.read_csv('../data/ABM_subs.csv')
+AB = np.zeros((len(np.unique(AB_df['subject'])), 48))
+
+for x, s in enumerate(np.unique(AB_df['subject'])):
+    AB[x, :] =  AB_df[AB_df['subject'] == s]['ABM'].values
 
 ns = AB.shape[0] # n subjects
 ni = AB.shape[1] # n images
@@ -51,7 +57,7 @@ nperm = 3000
 imi = np.array([random.sample(range(0, ni), ni) for x in range(nperm)])
 
 layers = ['conv1', 'conv2', 'conv3', 'conv4', 'conv5', 'fc6', 'fc7', 'fc8']
-layers = [ 'fc6', 'fc7', 'fc8']
+#layers = [ 'fc6', 'fc7', 'fc8']
 # User input for now
 #layers = [sys.argv[1]]
 

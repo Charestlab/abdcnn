@@ -1,6 +1,7 @@
 # PERMUTATION TEST DISTRIBUTION
 import os
 import numpy as np
+import pandas as pd
 from sklearn import linear_model
 from random import shuffle
 from sklearn.pipeline import make_pipeline
@@ -28,14 +29,18 @@ def predict_save(layer):
     DCNN_PATH = '../DCNN_features'
     DATA_PATH = '../data'
     AB = np.loadtxt(os.path.join(DATA_PATH, 'ABmag_allsubs.txt'))
+    AB_df = pd.read_csv('../data/ABM_subs.csv')
+    AB = np.zeros((len(np.unique(AB_df['subject'])), 48))
+
+    for x, s in enumerate(np.unique(AB_df['subject'])):
+        AB[x, :] =  AB_df[AB_df['subject'] == s]['ABM'].values
 
     ns = AB.shape[0] # n subjects
     ni = AB.shape[1] # n images
 
     # set up pipeline with scaler, feature selection and linear regression
     lr = linear_model.LinearRegression()
-    clf = make_pipeline(preprocessing.StandardScaler(), SelectFromModel(lr), lr)
-    clf = make_pipeline(VarianceThreshold(threshold=0.0), preprocessing.StandardScaler(), lr)
+    clf = make_pipeline(VarianceThreshold(threshold=0.15), preprocessing.StandardScaler(), lr)
 
     # Load layer data
     X = np.load(os.path.join(DCNN_PATH, 'features_{0}.npy'.format(layer)))
@@ -45,7 +50,6 @@ def predict_save(layer):
 
     preds = np.zeros((ns, X.shape[0]))
     for sub in tqdm(range(ns)):
-        #print_progress(sub, range(ns))
         preds[sub, :] = cross_val_predict(clf, X, AB[sub, :], cv=ni)
 
     np.save(os.path.join(DATA_PATH, f'test_{layer}_prediction.npy'), preds)
