@@ -11,7 +11,7 @@ Most of the code is shown as jupyter notebook tutorials, and will run quickly on
 
 To start, look at 'Plot_results.ipynb' in the /code folder, where each step is described.
 
-To run Plot_results.ipynb online press:
+To run Plot_results.ipynb online without having to download anything to your computer, click:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Charestlab/abdcnn/master)
 
