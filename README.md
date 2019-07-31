@@ -10,7 +10,9 @@ pip install -r requirements.txt
 Most of the code is shown as jupyter notebook tutorials, and will run quickly on most modern systems. The cross-validated fitting procedure however, was implement on a high performance computing cluster and takes several days of computation for all DCNN layers. 
 
 To start, look at 'Plot_results.ipynb' in the /code folder, where each step is described.
+
 To run Plot_results.ipynb online press:
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Charestlab/abdcnn/master)
 
 And go to code/Plot_results.ipynb
