@@ -7,8 +7,7 @@ from random import shuffle
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import cross_val_predict
 from sklearn import preprocessing
-from multiprocessing import Pool
-from sklearn.feature_selection import VarianceThreshold, SelectFromModel
+from sklearn.feature_selection import VarianceThreshold
 import warnings
 from tqdm import tqdm
 warnings.simplefilter(action="ignore", category=FutureWarning)

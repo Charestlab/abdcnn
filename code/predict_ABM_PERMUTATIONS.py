@@ -9,8 +9,6 @@ from sklearn import preprocessing
 import sys
 import random
 from sklearn.feature_selection import VarianceThreshold
-from sklearn.feature_selection import SelectFromModel
-from sklearn.svm import SVR
 import warnings
 warnings.filterwarnings("ignore")
 """

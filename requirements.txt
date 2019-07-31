@@ -2,6 +2,8 @@ numpy
 scipy
 scikit-learn
 pandas
-seaborne
+seaborn
 matplotlib
 jupyter
+statsmodels
+tqdm
